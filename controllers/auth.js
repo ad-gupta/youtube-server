@@ -43,7 +43,9 @@ export const signup = async (req, resp, next) => {
 
     resp
       .cookie("access_token", token, {
-        httpOnly: true
+        httpOnly: true,
+        sameSite: 'none',
+        secure: true,
       })
       .status(200)
       .json(others);
@@ -66,7 +68,9 @@ export const signin = async (req, res, next) => {
 
     res
       .cookie("access_token", token, {
-        httpOnly: true
+        httpOnly: true,
+        sameSite: 'none',
+        secure: true,
       })
       .status(200)
       .json(others);
@@ -84,7 +88,9 @@ export const signinWithGoogle = async (req, resp, next) => {
       const token = jwt.sign({ id: user._id }, process.env.JWT);
       resp
         .cookie("access_token", token, {
-          httpOnly: false,
+          httpOnly: true,
+        sameSite: 'none',
+        secure: true,
         })
         .status(200)
         .json(user._doc);
@@ -96,7 +102,9 @@ export const signinWithGoogle = async (req, resp, next) => {
       const token = jwt.sign({ id: newUser._id }, process.env.JWT);
       resp
         .cookie("access_token", token, {
-          httpOnly: true
+          httpOnly: true,
+        sameSite: 'none',
+        secure: true,
         })
         .status(200)
         .json(newUser._doc);
