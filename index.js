@@ -24,7 +24,7 @@ const connect = () => {
 app.use(cors({
     origin: [
       "http://localhost:3000",
-      "https://shortvideo.netlify.app/",
+      "https://shortvideo.netlify.app",
     ],
     credentials: true,
   }))
