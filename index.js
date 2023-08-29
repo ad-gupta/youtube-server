@@ -21,7 +21,13 @@ const connect = () => {
 // app.use(fileupload({
 //     useTempFiles: true
 // }))
-app.use(cors())
+app.use(cors({
+    origin: [
+      "http://localhost:3000",
+      "https://shortvideo.netlify.app/",
+    ],
+    credentials: true,
+  }))
 app.use(express.json())
 app.use(cookieParser())
 app.use("/api/auths", authRoute)
