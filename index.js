@@ -7,7 +7,8 @@ import videoRoute from "./routes/videos.js"
 import authRoute from "./routes/auth.js"
 import cookieParser from "cookie-parser"
 import cors from 'cors';
-// import fileupload from 'express-fileupload'
+import * as path from 'path'
+const __dirname = path.resolve();
 
 const app = express();
 dotenv.config();
@@ -18,9 +19,11 @@ const connect = () => {
     }).catch((err) => {console.log(err)})
 }
 
-// app.use(fileupload({
-//     useTempFiles: true
-// }))
+app.use(express.static(path.join(__dirname, "./build")))
+
+app.get("*", (req, resp) => {
+    resp.sendFile(path.join(__dirname, './build/index.html'))
+})
 app.use(cors())
 app.use(express.json())
 app.use(cookieParser())

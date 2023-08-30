@@ -116,6 +116,7 @@ export const signinWithGoogle = async (req, resp, next) => {
 
 export const logout = async (req, resp, next) => {
   try {
+    console.log(req.cookies)
     resp.clearCookie("access_token");
     resp.send('Logged out successfully');
   } catch (err) {
