@@ -26,7 +26,10 @@ const connect = () => {
 // })
 // console.log(path.join(__dirname, './client/build/index.html'))
 
-app.use(cors())
+app.use(cors({
+    origin: 'http://localhost:3001',
+    credentials: true
+  }))
 app.use(express.json())
 app.use(cookieParser())
 app.use("/api/auths", authRoute)

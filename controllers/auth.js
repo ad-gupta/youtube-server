@@ -43,7 +43,10 @@ export const signup = async (req, resp, next) => {
 
     resp
       .cookie("access_token", token, {
-        httpOnly: true,
+        path: '/',          // Cookie is accessible on the entire domain
+        httpOnly: true,     // Make the cookie accessible only through HTTP(S) and not JavaScript
+        secure: true,       // Cookie will be sent only over secure (HTTPS) connections
+        sameSite: 'None',  
       })
       .status(200)
       .json(others);
@@ -66,7 +69,10 @@ export const signin = async (req, res, next) => {
 
     res
       .cookie("access_token", token, {
-        httpOnly: true,
+        path: '/',          // Cookie is accessible on the entire domain
+        httpOnly: true,     // Make the cookie accessible only through HTTP(S) and not JavaScript
+        secure: true,       // Cookie will be sent only over secure (HTTPS) connections
+        sameSite: 'None',  
       })
       .status(200)
       .json(others);
@@ -96,7 +102,10 @@ export const signinWithGoogle = async (req, resp, next) => {
       const token = jwt.sign({ id: newUser._id }, process.env.JWT);
       resp
         .cookie("access_token", token, {
-          httpOnly: true,
+        path: '/',          // Cookie is accessible on the entire domain
+        httpOnly: true,     // Make the cookie accessible only through HTTP(S) and not JavaScript
+        secure: true,       // Cookie will be sent only over secure (HTTPS) connections
+        sameSite: 'None',  
         })
         .status(200)
         .json(newUser._doc);
