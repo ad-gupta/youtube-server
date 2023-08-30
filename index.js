@@ -27,7 +27,7 @@ const connect = () => {
 // console.log(path.join(__dirname, './client/build/index.html'))
 
 app.use(cors({
-    origin: 'http://localhost:3001',
+    origin: ['http://localhost:3000', 'https://shortsvideo.netlify.app'],
     credentials: true
   }))
 app.use(express.json())
